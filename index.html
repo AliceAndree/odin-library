@@ -7,5 +7,148 @@
     <link rel="stylesheet" href="style.css" />
     <script src="javascript.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <header>
+        <input type="search" name="search" id="search" placeholder="Search" />
+        <div class="user-block">
+          <img
+            id="notifications"
+            src="./assets/notifications.svg"
+            alt="Notifications"
+          />
+          <img
+            id="user-avatar"
+            src="./assets/avatar-01.svg"
+            alt="User Avatar"
+          />
+          <div id="user-name">
+            Alice Andrée <img src="./assets/chevron.svg" alt="Chevron Icon" />
+          </div>
+        </div>
+      </header>
+      <div class="sidebar">
+        <div id="logo">
+          <div id="title">Library</div>
+        </div>
+        <ul class="menu">
+          <li id="home" class="menu-item"><a href="">Discover</a></li>
+          <li id="category" class="menu-item"><a href="">Category</a></li>
+          <li id="my-library" class="menu-item"><a href="">My Library</a></li>
+          <li id="download" class="menu-item"><a href="">Download</a></li>
+          <li id="audio-books" class="menu-item"><a href="">Audio Books</a></li>
+          <li id="favorite" class="menu-item"><a href="">Favorite</a></li>
+          <li id="settings" class="menu-item"><a href="">Settings</a></li>
+          <li id="support" class="menu-item"><a href="">Support</a></li>
+          <li id="logout" class="menu-item"><a href="">Logout</a></li>
+        </ul>
+      </div>
+      <div class="main">
+        <div id="book-section">
+          <div id="discover">
+            <div id="discover-info">
+              <h4>Alain & Laurent Vonck</h4>
+              <h3>L'Atelier Irradié</h3>
+              <button>Read Now</button>
+            </div>
+          </div>
+          <div id="library">
+            <div id="library-top">
+              <h2>My Books</h2>
+              <button>
+                Add Book <img src="./assets/plus.svg" alt="Plus Icon" />
+              </button>
+            </div>
+            <div id="books">
+              <div class="book">
+                <div id="book-1" class="book-top"></div>
+                <div class="book-bottom">
+                  <h3>L'Amour Sous Algorithme</h3>
+                  <h4>Judith Duportail</h4>
+                  <div class="book-buttons">
+                    <button>Mark As Read</button>
+                    <img
+                      src="./assets/delete.svg"
+                      alt="Delete Button"
+                      class="delete"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="book">
+                <div id="book-2" class="book-top"></div>
+                <div class="book-bottom">
+                  <h3>Habiter En Oiseau</h3>
+                  <h4>Vinciane Despret</h4>
+                  <div class="book-buttons">
+                    <button>Mark As Read</button>
+                    <img
+                      src="./assets/delete.svg"
+                      alt="Delete Button"
+                      class="delete"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="book">
+                <div id="book-3" class="book-top"></div>
+                <div class="book-bottom">
+                  <h3>Le Plaisir</h3>
+                  <h4>Maria Hesse</h4>
+                  <div class="book-buttons">
+                    <button>Mark As Read</button>
+                    <img
+                      src="./assets/delete.svg"
+                      alt="Delete Button"
+                      class="delete"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="side-article">
+          <img src="./assets/sky-book.jpg" alt="Hand Calendar Image" />
+          <h3>The Mirror Book</h3>
+          <h4>Author Name</h4>
+          <div id="stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <span>5.0</span>
+          </div>
+          <div id="ratings">
+            <div class="rating">
+              <p>Pages</p>
+              <span>243</span>
+            </div>
+            <hr />
+            <div class="rating">
+              <p>Ratings</p>
+              <span>872</span>
+            </div>
+            <hr />
+            <div class="rating">
+              <p>Reviews</p>
+              <span>194</span>
+            </div>
+          </div>
+          <p id="side-paragraph">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+            faucibus, ligula quis gravida rutrum, augue tellus tristique risus,
+            sed interdum libero augue vel odio.
+            <br />
+            <br />
+            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+            posuere cubilia curae; Ut dignissim eros at enim varius, a tristique
+            lectus vulputate. Integer sed tortor hendrerit, porta odio vel,
+            dapibus augue. In feugiat interdum augue id scelerisque.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
