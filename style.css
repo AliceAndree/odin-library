@@ -360,6 +360,7 @@ button {
 .book-top,
 .book-bottom {
   width: 100%;
+  display: flex;
 }
 .book-top {
   height: 70%;
@@ -368,9 +369,10 @@ button {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
+  justify-content: flex-end;
+  align-items: end;
 }
 .book-bottom {
-  display: flex;
   flex-direction: column;
   background-color: white;
   height: 33%;
@@ -396,6 +398,13 @@ button {
     align-self: start;
     padding: 10px 15px;
   }
+}
+
+.number-of-pages {
+  background-color: var(--anthracite);
+  color: white;
+  padding: 3px 7px;
+  border-radius: 10px 10px 0 0;
 }
 
 .book-buttons {
