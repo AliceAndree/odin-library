@@ -55,10 +55,53 @@
           <div id="library">
             <div id="library-top">
               <h2>My Books</h2>
-              <button>
+              <button id="add-book">
                 Add Book <img src="./assets/plus.svg" alt="Plus Icon" />
               </button>
             </div>
+
+            <dialog id="modal">
+              <div id="modal-container">
+                <img id="close" src="./assets/close.svg" alt="" />
+                <h2>Add New Book</h2>
+                <div id="line">
+                  <hr />
+                </div>
+                <form action="">
+                  <label for="book-title">Book Title</label>
+                  <input
+                    type="text"
+                    name="book-title"
+                    id="book-title"
+                    placeholder="Enter Book Title"
+                  />
+                  <label for="book-author">Book Author</label>
+                  <input
+                    type="text"
+                    name="book-author"
+                    id="book-author"
+                    placeholder="Enter Author"
+                  />
+                  <label for="book-nr-of-pages">No. of Pages</label>
+                  <input
+                    type="text"
+                    name="book-nr-of-pages"
+                    id="book-nr-of-pages"
+                    placeholder="Enter Pages"
+                  />
+                  <div id="read">
+                    <label name="switch" class="switch">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <label for="switch">I Read This Book !</label>
+                  </div>
+                  <button id="confirm">Confirm</button>
+                  <button id="reset" type="reset">Reset</button>
+                </form>
+              </div>
+            </dialog>
+
             <div id="books">
               <div class="book">
                 <div id="book-1" class="book-top">
