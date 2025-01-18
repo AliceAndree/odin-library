@@ -426,6 +426,19 @@ button {
   justify-content: space-between;
   align-items: center;
   margin: 10px 0 0 0;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    img {
+      margin: 0 0 0 -5px;
+      height: 18px;
+    }
+  }
+
   img {
     height: 30px;
     cursor: pointer;

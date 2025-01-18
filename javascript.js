@@ -1,3 +1,4 @@
+const discoverButton = document.querySelector("#discover-button");
 const addBookButton = document.querySelector("#add-book");
 const closeButton = document.querySelector("#close");
 const confirmButton = document.querySelector("#confirm");
@@ -9,7 +10,7 @@ const Book1 = new Book(
   "L'Amour sous Algorithme",
   "Judith Duportail",
   232,
-  true,
+  false,
   "./assets/amour-sous-algo.jpeg"
 );
 
@@ -73,7 +74,27 @@ function displayBooks(books) {
     const bookButtons = document.createElement("div");
     bookButtons.classList.add("book-buttons");
     const readButton = document.createElement("button");
-    readButton.textContent = "Mark As Read";
+    readButton.classList.add("read-button");
+
+    if (book.read === true) {
+      readButton.textContent = "Read";
+      readButton.style.backgroundColor = "#3EA344";
+    } else {
+      readButton.textContent = "Mark As Read";
+    }
+
+    readButton.addEventListener("click", () => {
+      if (readButton.textContent === "Mark As Read") {
+        book.read = true;
+        readButton.innerHTML = `<img src="./assets/check.svg" alt="Check Icon" />Read`;
+        readButton.style.backgroundColor = "#3EA344";
+      } else {
+        book.read = false;
+        readButton.textContent = "Mark As Read";
+        readButton.style.backgroundColor = "#1170e4";
+      }
+    });
+
     bookButtons.appendChild(readButton);
     const deleteButton = document.createElement("img");
     deleteButton.classList.add("delete");
@@ -84,12 +105,26 @@ function displayBooks(books) {
     bookElement.appendChild(bookBottom);
 
     bookList.appendChild(bookElement);
+
+    deleteButton.addEventListener("click", () => {
+      deleteButton.closest(".book").remove();
+    });
   });
 }
 
 displayBooks(myLibrary);
 
 /* Event Listeners */
+
+discoverButton.addEventListener("click", () => {
+  if (discoverButton.textContent === "Read Now") {
+    discoverButton.textContent = "Continue";
+    discoverButton.style.backgroundColor = "#3EA344";
+  } else {
+    discoverButton.textContent = "Read Now";
+    discoverButton.style.backgroundColor = "#1170e4";
+  }
+});
 
 addBookButton.addEventListener("click", () => {
   modal.showModal();
