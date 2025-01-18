@@ -15,6 +15,7 @@
   --dark-blue: rgb(19, 88, 178);
   --purple: rgb(146, 42, 244);
   --translucid-purple: rgba(146, 42, 244, 0.4);
+  --translucid-blue: rgb(17, 112, 228, 0.5);
   --translucid-red: rgba(233, 69, 63, 0.4);
   --translucid-white: rgba(255, 255, 255, 0.415);
   --translucid-black: rgba(0, 0, 0, 0.1);
@@ -427,6 +428,7 @@ button {
   margin: 10px 0 0 0;
   img {
     height: 30px;
+    cursor: pointer;
   }
 }
 
@@ -527,6 +529,8 @@ button {
   padding: 5px;
 
   h2 {
+    font-family: So Cloudy;
+    font-weight: 900;
     padding: 0 0 0 30px;
   }
 
@@ -537,14 +541,18 @@ button {
   form {
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 10px 30px;
 
-    label {
+    label[for="book-title"],
+    label[for="book-author"],
+    label[for="book-nr-of-pages"] {
       color: var(--anthracite);
     }
 
-    input {
-      margin-bottom: 25px;
+    #book-title,
+    #book-author,
+    #book-nr-of-pages {
+      margin-bottom: 15px;
       height: 40px;
       border-radius: 10px;
       border: 2px solid var(--lighter-grey);
@@ -568,17 +576,74 @@ button {
   }
 }
 
+#top-form {
+  display: flex;
+  justify-content: space-between;
+}
+
 #close {
   height: 30px;
   width: 30px;
-  align-self: end;
   cursor: pointer;
 }
 
+#drag-box {
+  position: relative;
+  display: inline-block;
+  width: 430px;
+  height: 178px;
+  text-align: center;
+  padding: 20px;
+  border: 2px dashed var(--lighter-grey);
+  transition: transform 0.3s;
+
+  input {
+    opacity: 0;
+    position: absolute;
+    height: 100% !important;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
+.draging {
+  transform: scale(1.1);
+}
+
+strong {
+  display: block;
+  text-align: center;
+  margin: 20px;
+}
+
+#upload-button {
+  display: block;
+  position: relative;
+  width: 150px;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  color: white;
+  background-color: var(--translucid-blue);
+  border: 1px solid var(--translucid-blue);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  z-index: 100;
+
+  &:hover {
+    color: var(--translucid-blue);
+    background-color: white;
+  }
+}
 #read {
   display: flex;
   align-items: center;
   gap: 15px;
+  margin: 20px 0 0 0;
 }
 
 .switch {
@@ -650,7 +715,7 @@ input:checked + .slider:before {
   }
 }
 
-#reset {
+#reset-button {
   background-color: var(--translucid-white);
   color: var(--blue);
   border: 1px solid var(--blue);

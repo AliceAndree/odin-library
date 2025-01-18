@@ -1,14 +1,9 @@
 const addBookButton = document.querySelector("#add-book");
 const closeButton = document.querySelector("#close");
+const confirmButton = document.querySelector("#confirm");
 const modal = document.querySelector("#modal");
-
-addBookButton.addEventListener("click", () => {
-  modal.showModal();
-});
-
-closeButton.addEventListener("click", () => {
-  modal.close();
-});
+const dragAndDropArea = document.querySelector("#upload-file");
+let bookImage = null;
 
 const Book1 = new Book(
   "L'Amour sous Algorithme",
@@ -49,10 +44,109 @@ function Book(title, author, pages, read, image) {
 
 function displayBooks(books) {
   books.forEach((book) => {
-    console.log(book);
+    const bookList = document.querySelector("#books");
+
+    const bookElement = document.createElement("div");
+    bookElement.classList.add("book");
+
+    const bookTop = document.createElement("div");
+    bookTop.classList.add("book-top");
+    bookTop.style.backgroundImage = `url("${book.image}")`;
+
+    const pagesNumber = document.createElement("div");
+    pagesNumber.classList.add("number-of-pages");
+    pagesNumber.textContent = `${book.pages} Pages`;
+    bookTop.appendChild(pagesNumber);
+    bookElement.appendChild(bookTop);
+
+    const bookBottom = document.createElement("div");
+    bookBottom.classList.add("book-bottom");
+
+    const bookTitle = document.createElement("h3");
+    bookTitle.textContent = book.title;
+    bookBottom.appendChild(bookTitle);
+
+    const bookAuthor = document.createElement("h4");
+    bookAuthor.textContent = book.author;
+    bookBottom.appendChild(bookAuthor);
+
+    const bookButtons = document.createElement("div");
+    bookButtons.classList.add("book-buttons");
+    const readButton = document.createElement("button");
+    readButton.textContent = "Mark As Read";
+    bookButtons.appendChild(readButton);
+    const deleteButton = document.createElement("img");
+    deleteButton.classList.add("delete");
+    deleteButton.src = "./assets/delete.svg";
+    deleteButton.alt = "Delete Button";
+    bookButtons.appendChild(deleteButton);
+    bookBottom.appendChild(bookButtons);
+    bookElement.appendChild(bookBottom);
+
+    bookList.appendChild(bookElement);
   });
 }
 
 displayBooks(myLibrary);
 
-function addBookToLibrary() {}
+/* Event Listeners */
+
+addBookButton.addEventListener("click", () => {
+  modal.showModal();
+});
+
+closeButton.addEventListener("click", () => {
+  modal.close();
+});
+
+confirmButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  let bookTitle = document.querySelector("#book-title");
+  bookTitle = bookTitle.value;
+
+  let bookAuthor = document.querySelector("#book-author");
+  bookAuthor = bookAuthor.value;
+
+  let bookNumberOfPages = document.querySelector("#book-nr-of-pages");
+  bookNumberOfPages = bookNumberOfPages.value;
+
+  const read = document.querySelector("#read-check");
+  let isRead;
+
+  if (read.checked) {
+    isRead = true;
+  } else {
+    isRead = false;
+  }
+
+  if (bookImage == null || bookImage == undefined || bookImage == "") {
+    bookImage = "#";
+  }
+
+  const newBook = new Book(
+    bookTitle,
+    bookAuthor,
+    bookNumberOfPages,
+    isRead,
+    bookImage
+  );
+
+  myLibrary.push(newBook);
+  document.querySelectorAll(".book").forEach((e) => e.remove());
+  displayBooks(myLibrary);
+  document.querySelector("#book-form").reset();
+  modal.close();
+});
+
+dragAndDropArea.addEventListener("change", () => {
+  const filename = dragAndDropArea.files[0];
+  bookImage = URL.createObjectURL(filename);
+});
+
+dragAndDropArea.addEventListener("dragover", () => {
+  dragAndDropArea.parentNode.classList.add("draging");
+});
+
+dragAndDropArea.addEventListener("drop", () => {
+  dragAndDropArea.parentNode.classList.remove("draging");
+});

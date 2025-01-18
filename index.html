@@ -62,12 +62,14 @@
 
             <dialog id="modal">
               <div id="modal-container">
-                <img id="close" src="./assets/close.svg" alt="" />
-                <h2>Add New Book</h2>
+                <div id="top-form">
+                  <h2>Add New Book</h2>
+                  <img id="close" src="./assets/close.svg" alt="" />
+                </div>
                 <div id="line">
                   <hr />
                 </div>
-                <form action="">
+                <form id="book-form">
                   <label for="book-title">Book Title</label>
                   <input
                     type="text"
@@ -89,72 +91,30 @@
                     id="book-nr-of-pages"
                     placeholder="Enter Pages"
                   />
+                  <div id="upload-image">
+                    <span id="drag-box"
+                      >Drag and Drop Image here
+                      <input type="file" name="" id="upload-file" />
+                      <strong>OR</strong>
+                      <label for="upload-file" id="upload-button"
+                        >Upload Image</label
+                      >
+                    </span>
+                  </div>
                   <div id="read">
                     <label name="switch" class="switch">
-                      <input type="checkbox" />
+                      <input id="read-check" type="checkbox" />
                       <span class="slider round"></span>
                     </label>
                     <label for="switch">I Read This Book !</label>
                   </div>
                   <button id="confirm">Confirm</button>
-                  <button id="reset" type="reset">Reset</button>
+                  <button id="reset-button" type="reset">Reset</button>
                 </form>
               </div>
             </dialog>
 
-            <div id="books">
-              <div class="book">
-                <div id="book-1" class="book-top">
-                  <div class="number-of-pages">232 Pages</div>
-                </div>
-                <div class="book-bottom">
-                  <h3>L'Amour Sous Algorithme</h3>
-                  <h4>Judith Duportail</h4>
-                  <div class="book-buttons">
-                    <button>Mark As Read</button>
-                    <img
-                      src="./assets/delete.svg"
-                      alt="Delete Button"
-                      class="delete"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="book">
-                <div id="book-2" class="book-top">
-                  <div class="number-of-pages">224 Pages</div>
-                </div>
-                <div class="book-bottom">
-                  <h3>Habiter En Oiseau</h3>
-                  <h4>Vinciane Despret</h4>
-                  <div class="book-buttons">
-                    <button>Mark As Read</button>
-                    <img
-                      src="./assets/delete.svg"
-                      alt="Delete Button"
-                      class="delete"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="book">
-                <div id="book-3" class="book-top">
-                  <div class="number-of-pages">160 Pages</div>
-                </div>
-                <div class="book-bottom">
-                  <h3>Le Plaisir</h3>
-                  <h4>Maria Hesse</h4>
-                  <div class="book-buttons">
-                    <button>Mark As Read</button>
-                    <img
-                      src="./assets/delete.svg"
-                      alt="Delete Button"
-                      class="delete"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div id="books"></div>
           </div>
         </div>
         <div class="side-article">
