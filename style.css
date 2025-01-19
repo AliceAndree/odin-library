@@ -600,6 +600,16 @@ button {
   cursor: pointer;
 }
 
+#upload-image {
+  width: 430px;
+  height: 178px;
+
+  &:has(#preview) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 #drag-box {
   position: relative;
   display: inline-block;
@@ -651,6 +661,11 @@ strong {
     color: var(--translucid-blue);
     background-color: white;
   }
+}
+
+#preview {
+  height: 90%;
+  align-self: center;
 }
 #read {
   display: flex;

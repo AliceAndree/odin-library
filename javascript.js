@@ -3,34 +3,14 @@ const addBookButton = document.querySelector("#add-book");
 const closeButton = document.querySelector("#close");
 const confirmButton = document.querySelector("#confirm");
 const modal = document.querySelector("#modal");
+const bookForm = document.querySelector("#book-form");
 const dragAndDropArea = document.querySelector("#upload-file");
+const dragBox = document.querySelector("#drag-box");
+const uploadImageArea = document.querySelector("#upload-image");
+const preview = document.createElement("img");
 let bookImage = null;
 
-const Book1 = new Book(
-  "L'Amour sous Algorithme",
-  "Judith Duportail",
-  232,
-  false,
-  "./assets/amour-sous-algo.jpeg"
-);
-
-const Book2 = new Book(
-  "Habiter En Oiseau",
-  "Vinciane Despret",
-  224,
-  false,
-  "./assets/habiter-en-oiseau.jpg"
-);
-
-const Book3 = new Book(
-  "Le Plaisir",
-  "Maria Hesse",
-  160,
-  false,
-  "./assets/le-plaisir.jpg"
-);
-
-const myLibrary = [Book1, Book2, Book3];
+const myLibrary = [];
 
 function Book(title, author, pages, read, image) {
   this.title = title;
@@ -42,6 +22,30 @@ function Book(title, author, pages, read, image) {
     return `${this.title} by ${this.author}, ${this.pages} pages, read: ${this.read}, image: ${this.image}`;
   };
 }
+
+myLibrary.push(
+  new Book(
+    "L'Amour sous Algorithme",
+    "Judith Duportail",
+    232,
+    false,
+    "./assets/amour-sous-algo.jpeg"
+  )
+);
+
+myLibrary.push(
+  new Book(
+    "Habiter En Oiseau",
+    "Vinciane Despret",
+    224,
+    false,
+    "./assets/habiter-en-oiseau.jpg"
+  )
+);
+
+myLibrary.push(
+  new Book("Le Plaisir", "Maria Hesse", 160, false, "./assets/le-plaisir.jpg")
+);
 
 function displayBooks(books) {
   books.forEach((book) => {
@@ -112,6 +116,24 @@ function displayBooks(books) {
   });
 }
 
+function addImage() {
+  const filename = dragAndDropArea.files[0];
+  bookImage = URL.createObjectURL(filename);
+  dragBox.style.display = "none";
+  preview.style.display = "block";
+  preview.setAttribute("id", "preview");
+  preview.src = bookImage;
+  uploadImageArea.appendChild(preview);
+}
+
+function dragImage() {
+  dragAndDropArea.parentNode.classList.add("draging");
+}
+
+function dropImage() {
+  dragAndDropArea.parentNode.classList.remove("draging");
+}
+
 displayBooks(myLibrary);
 
 /* Event Listeners */
@@ -167,21 +189,15 @@ confirmButton.addEventListener("click", function (event) {
   );
 
   myLibrary.push(newBook);
-  document.querySelectorAll(".book").forEach((e) => e.remove());
+  document.querySelectorAll(".book").forEach((e) => e.remove()); // prevents books to be displayed twice or more
   displayBooks(myLibrary);
-  document.querySelector("#book-form").reset();
-  modal.close();
+  bookForm.reset();
+
+  dragBox.style.display = "inline-block";
+  preview.style.display = "none";
+  //   modal.close();
 });
 
-dragAndDropArea.addEventListener("change", () => {
-  const filename = dragAndDropArea.files[0];
-  bookImage = URL.createObjectURL(filename);
-});
-
-dragAndDropArea.addEventListener("dragover", () => {
-  dragAndDropArea.parentNode.classList.add("draging");
-});
-
-dragAndDropArea.addEventListener("drop", () => {
-  dragAndDropArea.parentNode.classList.remove("draging");
-});
+dragAndDropArea.addEventListener("change", addImage);
+dragAndDropArea.addEventListener("dragover", dragImage);
+dragAndDropArea.addEventListener("drop", dropImage);

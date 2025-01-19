@@ -76,6 +76,7 @@
                     name="book-title"
                     id="book-title"
                     placeholder="Enter Book Title"
+                    required
                   />
                   <label for="book-author">Book Author</label>
                   <input
@@ -83,6 +84,7 @@
                     name="book-author"
                     id="book-author"
                     placeholder="Enter Author"
+                    required
                   />
                   <label for="book-nr-of-pages">No. of Pages</label>
                   <input
@@ -90,11 +92,12 @@
                     name="book-nr-of-pages"
                     id="book-nr-of-pages"
                     placeholder="Enter Pages"
+                    required
                   />
                   <div id="upload-image">
                     <span id="drag-box"
                       >Drag and Drop Image here
-                      <input type="file" name="" id="upload-file" />
+                      <input type="file" id="upload-file" />
                       <strong>OR</strong>
                       <label for="upload-file" id="upload-button"
                         >Upload Image</label
@@ -108,6 +111,7 @@
                     </label>
                     <label for="switch">I Read This Book !</label>
                   </div>
+                  <div id="validation"></div>
                   <button id="confirm">Confirm</button>
                   <button id="reset-button" type="reset">Reset</button>
                 </form>
