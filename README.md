@@ -2,7 +2,7 @@
 
 ## This is an exercise from [The Odin Project](https://www.theodinproject.com/)'s Fullstack JS Path about Objects & Constructors.
 
-## The main features are to be able to add, delete or upadte reading status of a book. 
+## The main features are to be able to <ins>add</ins> a book, <ins>delete</ins> it or <ins>upadte</ins> it's read status. 
 
 ### Here is my final design for this project :
 #### (Also check [this link](https://aliceandree.github.io/odin-library) for a live version)
