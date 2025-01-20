@@ -1,6 +1,6 @@
 # The Odin Project - Library
 
-## This is an exercise from [The Odin Project](https://www.theodinproject.com/)'s Jullstack Javascript Path about JS Objects.
+## This is an exercise from [The Odin Project](https://www.theodinproject.com/)'s Fullstack JS Path about Objects & Constructors.
 
 ## The main features are to be able to add, delete or upadte reading status of a book. 
 
