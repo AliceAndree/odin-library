@@ -554,7 +554,7 @@ button {
   form {
     display: flex;
     flex-direction: column;
-    padding: 10px 30px;
+    padding: 10px 30px 15px 30px;
 
     label[for="book-title"],
     label[for="book-author"],
@@ -565,7 +565,7 @@ button {
     #book-title,
     #book-author,
     #book-nr-of-pages {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       height: 40px;
       border-radius: 10px;
       border: 2px solid var(--lighter-grey);
@@ -579,6 +579,10 @@ button {
         outline: none;
         border: 2px solid var(--blue);
       }
+    }
+
+    #book-nr-of-pages {
+      margin-bottom: 15px;
     }
   }
 
@@ -731,6 +735,14 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+#validation {
+  color: red;
+  font-size: 0.9rem;
+  font-weight: 700;
+  height: 22px;
+  padding: 10px 0;
 }
 
 #confirm {

@@ -4,6 +4,7 @@ const closeButton = document.querySelector("#close");
 const confirmButton = document.querySelector("#confirm");
 const modal = document.querySelector("#modal");
 const bookForm = document.querySelector("#book-form");
+const validationMessage = document.querySelector("#validation");
 const dragAndDropArea = document.querySelector("#upload-file");
 const dragBox = document.querySelector("#drag-box");
 const uploadImageArea = document.querySelector("#upload-image");
@@ -11,6 +12,8 @@ const preview = document.createElement("img");
 let bookImage = null;
 
 const myLibrary = [];
+
+// Book Constructor
 
 function Book(title, author, pages, read, image) {
   this.title = title;
@@ -22,6 +25,8 @@ function Book(title, author, pages, read, image) {
     return `${this.title} by ${this.author}, ${this.pages} pages, read: ${this.read}, image: ${this.image}`;
   };
 }
+
+// Three first books displayed when page has loaded
 
 myLibrary.push(
   new Book(
@@ -46,6 +51,8 @@ myLibrary.push(
 myLibrary.push(
   new Book("Le Plaisir", "Maria Hesse", 160, false, "./assets/le-plaisir.jpg")
 );
+
+// Displaying books
 
 function displayBooks(books) {
   books.forEach((book) => {
@@ -116,6 +123,8 @@ function displayBooks(books) {
   });
 }
 
+// Add an image to the book element
+
 function addImage() {
   const filename = dragAndDropArea.files[0];
   bookImage = URL.createObjectURL(filename);
@@ -132,6 +141,22 @@ function dragImage() {
 
 function dropImage() {
   dragAndDropArea.parentNode.classList.remove("draging");
+}
+
+function validateForm() {
+  let bookTitle = document.querySelector("#book-title");
+  let bookAuthor = document.querySelector("#book-author");
+  let bookNumberOfPages = document.querySelector("#book-nr-of-pages");
+
+  if (
+    bookTitle.value === "" ||
+    bookAuthor.value === "" ||
+    bookNumberOfPages === ""
+  ) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 displayBooks(myLibrary);
@@ -158,44 +183,51 @@ closeButton.addEventListener("click", () => {
 
 confirmButton.addEventListener("click", function (event) {
   event.preventDefault();
-  let bookTitle = document.querySelector("#book-title");
-  bookTitle = bookTitle.value;
+  if (validateForm()) {
+    let bookTitle = document.querySelector("#book-title");
+    bookTitle = bookTitle.value;
 
-  let bookAuthor = document.querySelector("#book-author");
-  bookAuthor = bookAuthor.value;
+    let bookAuthor = document.querySelector("#book-author");
+    bookAuthor = bookAuthor.value;
 
-  let bookNumberOfPages = document.querySelector("#book-nr-of-pages");
-  bookNumberOfPages = bookNumberOfPages.value;
+    let bookNumberOfPages = document.querySelector("#book-nr-of-pages");
+    bookNumberOfPages = bookNumberOfPages.value;
 
-  const read = document.querySelector("#read-check");
-  let isRead;
+    const read = document.querySelector("#read-check");
+    let isRead;
 
-  if (read.checked) {
-    isRead = true;
+    if (read.checked) {
+      isRead = true;
+    } else {
+      isRead = false;
+    }
+
+    if (bookImage == null || bookImage == undefined || bookImage == "") {
+      bookImage = "#";
+    }
+
+    const newBook = new Book(
+      bookTitle,
+      bookAuthor,
+      bookNumberOfPages,
+      isRead,
+      bookImage
+    );
+
+    myLibrary.push(newBook);
+    document.querySelectorAll(".book").forEach((e) => e.remove()); // prevents books to be displayed twice or more
+    displayBooks(myLibrary);
+    bookForm.reset();
+    validationMessage.textContent = "";
+
+    dragBox.style.display = "inline-block";
+    preview.style.display = "none";
+
+    modal.close();
   } else {
-    isRead = false;
+    validationMessage.textContent =
+      "Please fill in the book title, author and number of pages fileds";
   }
-
-  if (bookImage == null || bookImage == undefined || bookImage == "") {
-    bookImage = "#";
-  }
-
-  const newBook = new Book(
-    bookTitle,
-    bookAuthor,
-    bookNumberOfPages,
-    isRead,
-    bookImage
-  );
-
-  myLibrary.push(newBook);
-  document.querySelectorAll(".book").forEach((e) => e.remove()); // prevents books to be displayed twice or more
-  displayBooks(myLibrary);
-  bookForm.reset();
-
-  dragBox.style.display = "inline-block";
-  preview.style.display = "none";
-  //   modal.close();
 });
 
 dragAndDropArea.addEventListener("change", addImage);
