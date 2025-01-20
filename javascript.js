@@ -88,7 +88,7 @@ function displayBooks(books) {
     readButton.classList.add("read-button");
 
     if (book.read === true) {
-      readButton.textContent = "Read";
+      readButton.innerHTML = `<img src="./assets/check.svg" alt="Check Icon" />Read`;
       readButton.style.backgroundColor = "#3EA344";
     } else {
       readButton.textContent = "Mark As Read";
@@ -203,7 +203,7 @@ confirmButton.addEventListener("click", function (event) {
     }
 
     if (bookImage == null || bookImage == undefined || bookImage == "") {
-      bookImage = "#";
+      bookImage = "./assets/reading.jpg";
     }
 
     const newBook = new Book(
@@ -218,6 +218,7 @@ confirmButton.addEventListener("click", function (event) {
     document.querySelectorAll(".book").forEach((e) => e.remove()); // prevents books to be displayed twice or more
     displayBooks(myLibrary);
     bookForm.reset();
+    bookImage = null;
     validationMessage.textContent = "";
 
     dragBox.style.display = "inline-block";

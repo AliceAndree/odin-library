@@ -379,7 +379,6 @@ button {
 .book-top {
   height: 70%;
   border-radius: 20px 20px 0 0;
-  background-image: url(./assets/reading.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
